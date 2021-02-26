@@ -7,7 +7,7 @@ console.log(potencia(2,10))
 
 // arrow function equivalente
 // quando temos mais um parametro, os parenteses retornam
-cont potencia2=(b,e) => b**e
+const potencia2=(b,e) => b**e
 console.log(potencia2(2,10))
 
 // funcao sem parametros, que retornam um numero aleatorio entre 1 e 60
