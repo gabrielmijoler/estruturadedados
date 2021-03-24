@@ -19,7 +19,7 @@ function quicksort(vetor, ini = 0, fim = vetor.length - 1) {
         let div = ini - 1
         // for indo do primeiro elemento ate o penultimo
         for (let i = ini; i < fim; i++) {
-            if (vetor[i] < vetor[pivot]) {
+            if (vetor[i] < vetor[pivot]){
                 div++
                 [vetor[i], vetor[div]] = [vetor[div], vetor[i]]
                 trocas++
