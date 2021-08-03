@@ -1,18 +1,18 @@
 let frutas = ['laranja', 'maça', 'banana', 'pera', 'uva', 'mamão']
 //Exibir o vetor
-console.log (frutas)
+//console.log (frutas)
 
 //Tirar o último elemento do vetor
 let ultimaFruta = frutas.pop()
 
-console.log(frutas)
-console.log(ultimaFruta)
+//console.log(frutas)
+//console.log(ultimaFruta)
  
 //Tirar o primeiro elemento do vetor
 let primeiraFruta = frutas.shift()
 
-console.log (frutas)
-console.log (primeiraFruta)
+//console.log (frutas)
+//console.log (primeiraFruta)
 
 //Removendo posições intermediárias
 //splice()
@@ -20,18 +20,18 @@ console.log (primeiraFruta)
 // 2º parâmetro : quantidade de elementos que serão removi
 let terceiraFruta = frutas.splice(2,1)//Fruta na posição 2
 
-console.log (frutas)
-console.log (terceiraFruta)// splice() sempre retorna um vetor
+//console.log (frutas)
+//console.log (terceiraFruta)// splice() sempre retorna um vetor
 
 //inserindo um elemento no fim  vetor
 frutas.push('jubuticaba')
 
-console.log (frutas)
+//console.log (frutas)
 
 //Inserindo um elemento no inicio do vetor
 frutas.unshift('amora')
 
-console.log(frutas)
+//console.log(frutas)
 
 //Inserindo em posição intermediária
 //splice () para inserção
@@ -80,13 +80,12 @@ for(let f of frutas){
 console.log("-----------------")
 
 // 4) Percurso utilizando forEach()
-//forEach() recebe como argumento uma função cujo argumento
-//é cada um dos elementos do vetor percorrido
-//o nome do parâmetro da função passada pode ser qualquer nome válido de identificar
+//forEach() recebe como argumento uma função cujo argumento é cada um dos elementos do vetor percorrido (recebe o vetor com foreach)
+// o nome do parâmetro da função passada pode ser qualquer nome válido de identificar
 frutas.forEach(function(elemento) {
     console.log(elemento) 
 })
 
 //forEach() utilizando arrow function como parâmetro
 //teste
-frutas.forEach(elemento => console.log(elemento))
+frutas.forEach(elemento => console.log(elemento)) // os dois mesma coisa escrito forma diferente
