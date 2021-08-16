@@ -28,12 +28,25 @@ function buscaSequencial (vetor, valorBusca){
     //Retorna-se -1 caso o valor de busca não tenha sido encontrado 
     return -1
 }
+const frutas = ['laranja', 'maça', 'uva', 'pera', 'jabuticaba', 'limão', 'mamão']
 
-console.time('Buscando 11')
-console.log (buscaSequencial(primos,11))
-console.timeEnd('Buscando 11')
-console.log("------------------")
-console.time('Buscando 6911')
+console.log('Posição de uva:', buscaSequencial(fruta, 'uva'))
+console.log('Posição de uva:', buscaSequencial(fruta, 'laranja')) // busca sequencia eh funcao onde fruta passa para achar laranja e achar sua posicao
+console.log('Posição de uva:', buscaSequencial(fruta, 'mamão'))
+console.log('Posição de uva:', buscaSequencial(fruta, 'abacate'))
+
+
+
+
+
+
+
+
+
+
+
+
+
 const primos = [
 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73,
 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163,
