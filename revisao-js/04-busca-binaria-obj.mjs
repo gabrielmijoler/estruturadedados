@@ -15,8 +15,8 @@ function buscaBinaria(vetor, fnComp) {
         else if (fnComp(vetor[meio]) < 0) {
             comps += 2
             fim = meio - 1
-        }
-        else {
+        } // ver aula dia 23/8 sobre
+        else { 
             comps += 2
             ini = meio + 1
         }
@@ -34,7 +34,16 @@ const comparaNomeBin = obj => {
     else return 1
 }
 
-import { objNomes } from './includes/vetor-obj-nomes.mjs'
+
+import { objNomes } from '../includes/vetor-obj-nomes.mjs'
+
+
+console.log('Posição de firt_name === Fausto', buscaBinaria(objNomes, comparar))
+console.log('Comparaçao', comps)
+
+
+
+
 
 console.time('Buscando ZILMAR')
 console.log(buscaBinaria(objNomes, obj => {
@@ -45,6 +54,8 @@ console.log(buscaBinaria(objNomes, obj => {
 }), {comps})
 console.timeEnd('Buscando ZILMAR')
 
+
+
 console.time('Buscando KATIUSCIA')
 console.log(buscaBinaria(objNomes, obj => {
     const valorBusca = 'KATIUSCIA'
@@ -53,6 +64,8 @@ console.log(buscaBinaria(objNomes, obj => {
     else return 1
 }), {comps})
 console.timeEnd('Buscando KATIUSCIA')
+
+
 
 console.time('Buscando nome ABRAAO')
 let posEncontrado = buscaBinaria(objNomes, obj => {
@@ -63,7 +76,8 @@ let posEncontrado = buscaBinaria(objNomes, obj => {
 })
 console.timeEnd('Buscando nome ABRAAO')
 
-console.log(objNomes[posEncontrado], {comps})
+
+
 
 console.time('Buscando group_name MARIA')
 console.log(buscaBinaria(objNomes, obj => {
