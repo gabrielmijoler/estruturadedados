@@ -7,6 +7,7 @@
     Esses processo se repete em varias passadas ate que, percurso final 
     nenhuma troca seja feita.
     
+    TROCA NUM ARRAY O MAIOR PELO MENOR ATE CHEGAR NO NUMERO FINAL DO ARRAY
 */
 let tottrocas,comps,pass
 
@@ -14,10 +15,10 @@ function bubblesort(vetor){
     tottrocas=0 ,comps=0, pass = 0
     let trocas
     do{
-        trocas= 0 // inicio de uam nova passada
+        trocas = 0 // inicio de uam nova passada
         pass++
         // percursor do vetor do iniicio ate o penultimo elemento
-        for(let i=0; i <= vetor.length-2; i++){
+        for(let i=0; i <= vetor.length-1; i++){
             if(vetor[i] > vetor [i+1]){
                 trocas++
                // let aux = vetor[i]
@@ -47,7 +48,7 @@ bubblesort(nums)
 console.log('Depois:', nums)
 console.log({tottrocas, comps, pass})
 
-import { empresas } from './includes/15-mil-empresas.mjs'
+import { empresas } from '../includes/15-mil-empresas.mjs'
 
 console.log('ANTES', empresas)
 console.time('Ordenar empresas')
