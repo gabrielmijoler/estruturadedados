@@ -14,8 +14,7 @@ function selectionSort(vetor) {
 
     trocas = 0, pass = 0, comps = 0
     
-    function encontrarMenor(inicio) {
-        let menor = inicio
+   
         for(let j = inicio + 1; j < vetor.length; j++) {
             if(vetor[j] < vetor[menor]) menor = j
             comps++
