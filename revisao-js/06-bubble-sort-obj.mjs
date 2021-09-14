@@ -1,45 +1,62 @@
-let tottrocas, comps, pass
+ let pass, comps, trocas
 
-function bubblesort(vetor,fncomp) {
-    tottrocas = 0, comps=0, pass=0
-    let trocas
-    do{
-        trocas = 0 // inicio de uma nova passada
+/*
+    fnComp() passará à função externa os dois elementos adjacentes do vetor
+    e retornará:
+    - true: se o primeiro elemento for maior que o segundo
+    - false: caso contrário
+*/
+function bubbleSort(vetor, fnComp) {
+
+    pass = 0, comps = 0, trocas = 0
+
+    let trocou
+
+    do {
         pass++
-        
-    }
-    // percurso do vetor do inicio o penultimo elemento
-    for(let i=0; i <= vetor.length-2; i++){
-    
-    if (fncomp(vetor[i], vetor[i+1])){
-        
-        // troca direta em javascript usando desestruturacao de vetores
-         [vetor[i], vetor[i+1]]=[vetor[i+1], vetor [i]]
-        
-         trocas++
-    } 
-    comps++
+        trocou = false
+
+        // Percurso for tradicional até a PENÚLTIMA posição do vetor
+        for(let i = 0; i < vetor.length - 1; i++) {
+            comps++
+            // if(vetor[i] > vetor[i + 1]) {
+            if(fnComp(vetor[i], vetor[i + 1])) {
+                // Efetua a troca entre os elementos por desestruturação
+                [ vetor[i], vetor[i + 1] ] = [ vetor[i + 1], vetor[i] ]
+                trocou = true
+                trocas++
+            }
+        }
+
+    } while(trocou)
 }
-tottrocas+=trocas
-}while(trocas > 0)
 
- //A função de comparação precisa retornar:
- //true -> se o primeiro objeto for maior que o segundo
- //false -> caso contrário 
- 
- import {candidatos} from "../includes/candidatos-2018.mjs"
- 
- //Ordenando pelo nome de registro do candidato 
- console.log("ANTES", candidatos)
- console.time("Ordenar por nome de registro...")
- bubbleSort(candidatos,(a,b) => a.NM_CANDIDATO > b.NM_CANDIDATO)
- console.timeEnd("Ordenar por nome de registro...")
- console.log("DEPOIS: ", candidatos)
- console.log({totTrocas, comps, pass})
 
- console.log("ANTES", candidatos)
- console.time("Ordenar por nome de registro...")
- bubbleSort(candidatos,(a,b) => a.SG_UE > b.SG_UE)
- console.timeEnd("Ordenar por nome de registro...")
- console.log("DEPOIS: ", candidatos)
- console.log({totTrocas, comps, pass})
+
+import { objMotoristas } from './data/motoristas-obj-desord.mjs'
+
+console.time('Tempo de ordenação')
+
+// Ordenando por nome_motorista
+//bubbleSort(objMotoristas, (elem1, elem2) => elem1.nome_motorista > elem2.nome_motorista)
+
+// Ordenando por nome_motorista em ordem DECRESCENTE
+// bubbleSort(objMotoristas, (elem1, elem2) => elem1.nome_motorista < elem2.nome_motorista)
+
+// Ordenando por nome_motorista em ordem DECRESCENTE ignorando acentos
+// bubbleSort(objMotoristas, (elem1, elem2) => elem1.nome_motorista.localeCompare(elem2.nome_motorista, 'pt-br') <= 0)  // LEEEEENTO
+
+// Ordenação em dois níveis: primeiro por razao_social e depois por nome_motorista
+bubbleSort(objMotoristas, (elem1, elem2) => {
+    if(elem1.razao_social === elem2.razao_social) {     // Mesma empresa
+        // Desempate é feito pelo nome do motorista
+        return elem1.nome_motorista > elem2.nome_motorista
+    }
+    // Empresas diferentes, comparação direta de razao_social
+    else return elem1.razao_social > elem2.razao_social
+})
+
+console.timeEnd('Tempo de ordenação')
+
+console.log(objMotoristas)
+console.log({pass, comps, trocas})
