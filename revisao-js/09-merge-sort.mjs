@@ -36,7 +36,7 @@ function mergeSort(vetor) {
 
     // Desmontando o vetor
     if(vetor.length > 1) {  // Para desmontar, são necessários pelo menos 2 elementos
-        let meio = Math.floor(vetor.length / 2)
+        let meio = Math.floor(vetor.length / 2)// retorna numero inteiro dentro do array, metade do valor
         // slice(): fatia um vetor, desde a posição inicial indicada (inclusive)
         // até a posição final (exclusive - A ÚLTIMA POSIÇÃO NÃO ENTRA NA FATIA GERADA)
         let vetEsq = vetor.slice(0, meio)
@@ -53,7 +53,6 @@ function mergeSort(vetor) {
         
         let vetFinal = mesclar(vetEsq, vetDir)
         juncoes++
-        console.log({vetFinal})
 
         return vetFinal
 
@@ -61,7 +60,7 @@ function mergeSort(vetor) {
     return vetor  // condicao de saida : vetor.lenght === 1
 }
 
-// let nums = [7, 4, 9, 0, 6, 1, 8, 2, 5, 3]
+
 let nums = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 
 
@@ -69,17 +68,13 @@ let numsord = mergeSort(nums)
 console.log(numsord)
 console.log({comps,divisoes, juncoes})
 
-import {nomes} from './includes/vetor-nomes.mjs'
-
 comps = 0, divisoes = 0, juncoes = 0
 
+import {nomes} from '../includes/vetor-nomes.mjs'
+
 console.time('ordenando nomes...')
-
-let nomesord= mergesort (nomes)
-
+let nomesord= mergeSort(nomes)
+let memoriaMB= process.memoryUsage().heapUsed / 1024/ 1024
 console.timeEnd('ordenando nomes...')
-let memoria= process.memoryusage().heapused / 1024 / 1024
-console.log({comps,divisoes, juncoes, memoria})
-console.log('depois:', nomesord)
-
-
+console.log(nomesord)
+console.log({comps,divisoes,juncoes,memoriaMB})
