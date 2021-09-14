@@ -14,6 +14,7 @@ function mergeSort(vetor) {
     function mesclar(vetEsq, vetDir) {
         let pEsq = 0, pDir = 0, vetRes = []
         while(pEsq < vetEsq.length && pDir < vetDir.length) {
+            
             if(vetEsq[pEsq] < vetDir[pDir]) {
                 vetRes.push(vetEsq[pEsq])
                 pEsq++
