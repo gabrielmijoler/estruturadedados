@@ -1,60 +1,74 @@
 /*
-QUICK SHORT
-
-escolhe um dos elementros do veotr para ser o pivo(na nossa implementacao o ultimo elemento)e, na priemira passada
-o vetor, a partir da posição final do vetor, outro subvetor a direita, que contem apenas valores
-maiores que o pivo.
-
-Em seguida, recursivamente repete o processo em cada um dos subvetores ate que todo o vetor esteja oedenado
+    QUICK SORT
+    
+    Escolhe um dos elementos do vetor para ser o pivô (na nossa implementação,
+    o último elemento) e, na primeira passada, divide o vetor, a partir da posição
+    final do vetor, em um subvetor à esquerda contendo apenas valores menores que
+    o pivô e outro subvetor à direita, que contém apenas valores maiores que o pivô.
+    
+    Em seguida, recursivamente, repete o processo em cada um dos subvetores até que
+    todo o vetor esteja ordenado.
 */
 
+let pass = 0, comps = 0, trocas = 0
 
+function quickSort(vetor, ini = 0, fim = vetor.length - 1) {
 
-let comps = 0, trocas = 0, passadas = 0
+    // Só trabalhamos se a região do vetor tiver, pelo menos, 2 elementos
+    if(fim <= ini) return  // Condição de saída
 
-function quicksort(vetor, ini = 0, fim = vetor.length - 1) {
-    if (fim > ini) { // deve ter mais de um elemento para ordenar
-        passadas++
-        let pivot = fim
-        let div = ini - 1
-        // for indo do primeiro elemento ate o penultimo
-        for (let i = ini; i < fim; i++) {
-            if (vetor[i] < vetor[pivot]){
-                div++
-                [vetor[i], vetor[div]] = [vetor[div], vetor[i]]
+    pass++
+
+    const pivot = fim
+    let div = ini - 1
+
+    // For indo da posição ini até fim - 1
+    for(let i = ini; i < fim; i++) {
+        comps++
+        if(vetor[pivot] > vetor[i]) {
+            div++
+            if(div !== i) {
+                [ vetor[i], vetor[div] ] = [ vetor[div], vetor[i] ]
                 trocas++
             }
-            comps++
         }
-        div++
-        // colocando o pivo em seu lugar definitivo
-        if (vetor[pivot] < vetor[div]) {
-            [vetor[pivot], vetor[div]] = [vetor[div], vetor[pivot]]
-            trocas++
-        }
-        comps++
-        //quicksort esquerda
-        quicksort(vetor, ini, div - 1)
-
-        // quicksort direita
-        quicksort(vetor, div + 1, fim)
-
     }
+
+    div++
+
+    // Colocamos o pivô em seu lugar definitivo
+    comps++
+    if(vetor[div] > vetor[pivot] && div !== pivot) {
+        [ vetor[div], vetor[pivot] ] = [ vetor[pivot], vetor[div] ]
+        trocas++
+    }
+
+    // Chama o Quick Sort para o subvetor à esquerda do pivô
+    quickSort(vetor, ini, div - 1)
+
+    // Chama o Quick Sort para o subvetor à direita do pivô
+    quickSort(vetor, div + 1, fim)
 }
 
+/*********************************************************************** */
 
-//let nums = [7, 4, 9, 0, 6, 1, 8, 2, 5, 3]
-//let nums=[9,8,7,6,5,4,3,2,1,0]
-let nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-quicksort(nums)
+let nums = [ 77, 44, 22, 33, 99, 55, 88, 0, 66, 11 ]
+
+quickSort(nums)
+
 console.log(nums)
-console.log({ comps, trocas, passadas })
+console.log({pass, comps, trocas})
 
-import { nomes } from './includes/100-mil-nomes.mjs'
+/*********************************************************************** */
 
-console.time('ordenando nomes..')
-quicksort(nomes)
-console.timeEnd('ordenando nomes..')
-let memoria = process.memoryUsage().heapUsed / 1024 / 1024
-console.log({ trocas, comps, passadas, memoria })
-console.log('Depois', nomes)
+import { nomes } from './data/nomes-desord.mjs'
+
+pass = 0, comps = 0, trocas = 0
+
+console.time('Tempo de ordenação')
+quickSort(nomes)
+let memoriaMB = process.memoryUsage().heapUsed / 1024 / 1024
+console.timeEnd('Tempo de ordenação')
+
+console.log(nomes)
+console.log({pass, comps, trocas, memoriaMB})
